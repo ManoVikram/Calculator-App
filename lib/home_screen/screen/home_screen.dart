@@ -10,11 +10,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF23242D),
-      body: Column(
-        children: [
-          CalcDisplay(),
-          const NumberPad(),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            CalcDisplay(),
+            const NumberPad(),
+          ],
+        ),
       ),
     );
   }

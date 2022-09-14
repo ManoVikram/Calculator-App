@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nawgati_calculator_app/home_screen/models/providers/calculation_provider.dart';
+import 'package:provider/provider.dart';
 
 import './calc_button.dart';
 
@@ -9,8 +11,11 @@ class NumberPad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CalculationProvider calculationProvider =
+        context.watch<CalculationProvider>();
+
     return Expanded(
-      flex: 4,
+      flex: 6,
       child: Container(
         padding: const EdgeInsets.all(20.0),
         decoration: const BoxDecoration(
@@ -26,22 +31,30 @@ class NumberPad extends StatelessWidget {
                 CalcButton(
                   text: "AC",
                   textColor: Colors.tealAccent,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.clearAll();
+                  },
                 ),
                 CalcButton(
-                  text: "+/-",
+                  text: "⌫",
                   textColor: Colors.tealAccent,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.delete();
+                  },
                 ),
                 CalcButton(
                   text: "%",
                   textColor: Colors.tealAccent,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.percentage();
+                  },
                 ),
                 CalcButton(
                   text: "÷",
                   textColor: Colors.redAccent,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationOperator = "÷";
+                  },
                 ),
               ],
             ),
@@ -50,20 +63,28 @@ class NumberPad extends StatelessWidget {
               children: [
                 CalcButton(
                   text: "7",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "7";
+                  },
                 ),
                 CalcButton(
                   text: "8",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "8";
+                  },
                 ),
                 CalcButton(
                   text: "9",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "9";
+                  },
                 ),
                 CalcButton(
                   text: "×",
                   textColor: Colors.redAccent,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationOperator = "×";
+                  },
                 ),
               ],
             ),
@@ -71,21 +92,29 @@ class NumberPad extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CalcButton(
-                  text: "6",
-                  onTap: () {},
+                  text: "4",
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "4";
+                  },
                 ),
                 CalcButton(
                   text: "5",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "5";
+                  },
                 ),
                 CalcButton(
-                  text: "4",
-                  onTap: () {},
+                  text: "6",
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "6";
+                  },
                 ),
                 CalcButton(
                   text: "-",
                   textColor: Colors.redAccent,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationOperator = "-";
+                  },
                 ),
               ],
             ),
@@ -94,20 +123,28 @@ class NumberPad extends StatelessWidget {
               children: [
                 CalcButton(
                   text: "1",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "1";
+                  },
                 ),
                 CalcButton(
                   text: "2",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "2";
+                  },
                 ),
                 CalcButton(
                   text: "3",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "3";
+                  },
                 ),
                 CalcButton(
                   text: "+",
                   textColor: Colors.redAccent,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationOperator = "+";
+                  },
                 ),
               ],
             ),
@@ -117,7 +154,9 @@ class NumberPad extends StatelessWidget {
                 CalcButton(
                   text: "0",
                   isLong: true,
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = "0";
+                  },
                 ),
                 CalcButton(
                   text: ".",
