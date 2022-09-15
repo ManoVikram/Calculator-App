@@ -142,8 +142,8 @@ class CalculationProvider extends ChangeNotifier {
 
       if (equation.endsWith("+") ||
           equation.endsWith("-") ||
-          equation.endsWith("×") ||
-          equation.endsWith("÷")) {
+          equation.endsWith("*") ||
+          equation.endsWith("/")) {
         isEquationEndsWithOperator = true;
       } else {
         isEquationEndsWithOperator = false;
@@ -156,6 +156,7 @@ class CalculationProvider extends ChangeNotifier {
         _result = "= 0";
       } else {
         Parser parser = Parser();
+        // Expression expression = parser.parse(equation);
         Expression expression = parser.parse(isEquationEndsWithOperator
             ? equation.substring(0, equation.length - 1)
             : equation);
@@ -181,13 +182,13 @@ class CalculationProvider extends ChangeNotifier {
 
     lengthOfTheCurrentNumber = 0;
 
-    number1 = 0;
-    number2 = 0;
+    // number1 = 0;
+    // number2 = 0;
 
     notifyListeners();
   }
 
-  void add() {
+  /* void add() {
     answer = number1 + number2;
     number1 = answer;
 
@@ -213,12 +214,13 @@ class CalculationProvider extends ChangeNotifier {
     number1 = answer;
 
     setResult = answer.toString();
-  }
+  } */
 
   void percentage() {
-    answer = number1 / 100;
+    answer = double.parse(result) / 100.0;
 
     clearAll();
+
     setCalculationNumber = answer.toString();
 
     setResult = answer.toString();
