@@ -6,20 +6,11 @@ class CalculationProvider extends ChangeNotifier {
   String _equation = "";
   String _result = "= 0";
 
-  late double number1;
-  late double number2;
   late double answer;
 
   int lengthOfTheCurrentNumber = 0;
-  // 0 - Initial Value
-  // 1 - Addition
-  // 2 - Subtraction
-  // 3 - Multiplication
-  // 4 - Division
-  int operation = 0;
 
   bool isLastElementOperator = false;
-  bool fillNumber2 = false;
 
   String get calculation => _calculation;
 
@@ -39,38 +30,6 @@ class CalculationProvider extends ChangeNotifier {
     Expression expression = parser.parse(equation);
     _result =
         "= ${expression.evaluate(EvaluationType.REAL, ContextModel()).toString()}";
-
-    /* lengthOfTheCurrentNumber++;
-
-    _result =
-        "= ${calculation.substring(calculation.length - lengthOfTheCurrentNumber, calculation.length)}";
-
-    number1 = double.parse(result.substring(2));
-
-    if (isLastElementOperator) {
-      fillNumber2 = true;
-    }
-
-    if (fillNumber2) {
-      number2 = double.parse(calculation.substring(
-          calculation.length - lengthOfTheCurrentNumber, calculation.length));
-    }
-
-    print("Result: $result");
-    print("Num1: $number1");
-    print("Num2: $number2");
-
-    if (operation == 1) {
-      add();
-    } else if (operation == 2) {
-      subtract();
-    } else if (operation == 3) {
-      multiplication();
-    } else if (operation == 4) {
-      division();
-    }
-
-    isLastElementOperator = false; */
 
     notifyListeners();
   }
@@ -94,16 +53,6 @@ class CalculationProvider extends ChangeNotifier {
       _equation += "*";
     } else {
       _equation += operator;
-    }
-
-    if (operator == "+") {
-      operation = 1;
-    } else if (operator == "-") {
-      operation = 2;
-    } else if (operator == "×") {
-      operation = 3;
-    } else if (operator == "÷") {
-      operation = 4;
     }
 
     isLastElementOperator = true;
@@ -132,12 +81,10 @@ class CalculationProvider extends ChangeNotifier {
         } else {
           _calculation = calculation.substring(0, calculation.length - 1);
         }
-        print(calculation);
       }
 
       if (equation != "") {
         _equation = equation.substring(0, equation.length - 1);
-        print(equation);
       }
 
       if (equation.endsWith("+") ||
@@ -149,9 +96,6 @@ class CalculationProvider extends ChangeNotifier {
         isEquationEndsWithOperator = false;
       }
 
-      print(calculation.length);
-      print(equation.length);
-
       if (calculation.isEmpty) {
         _result = "= 0";
       } else {
@@ -162,7 +106,6 @@ class CalculationProvider extends ChangeNotifier {
             : equation);
         _result =
             "= ${expression.evaluate(EvaluationType.REAL, ContextModel()).toString()}";
-        print(result);
       }
 
       lengthOfTheCurrentNumber--;
@@ -178,43 +121,10 @@ class CalculationProvider extends ChangeNotifier {
 
     setResult = "0";
 
-    operation = 0;
-
     lengthOfTheCurrentNumber = 0;
-
-    // number1 = 0;
-    // number2 = 0;
 
     notifyListeners();
   }
-
-  /* void add() {
-    answer = number1 + number2;
-    number1 = answer;
-
-    setResult = answer.toString();
-  }
-
-  void subtract() {
-    answer = number1 - number2;
-    number1 = answer;
-
-    setResult = answer.toString();
-  }
-
-  void multiplication() {
-    answer = number1 * number2;
-    number1 = answer;
-
-    setResult = answer.toString();
-  }
-
-  void division() {
-    answer = number1 / number2;
-    number1 = answer;
-
-    setResult = answer.toString();
-  } */
 
   void percentage() {
     answer = double.parse(equation) / 100.0;

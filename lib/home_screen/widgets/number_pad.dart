@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nawgati_calculator_app/home_screen/models/providers/calculation_provider.dart';
 import 'package:provider/provider.dart';
 
 import './calc_button.dart';
+
+import '../../home_screen/models/providers/calculation_provider.dart';
 
 class NumberPad extends StatelessWidget {
   const NumberPad({
@@ -160,7 +161,9 @@ class NumberPad extends StatelessWidget {
                 ),
                 CalcButton(
                   text: ".",
-                  onTap: () {},
+                  onTap: () {
+                    calculationProvider.setCalculationNumber = ".";
+                  },
                 ),
                 CalcButton(
                   text: "=",
