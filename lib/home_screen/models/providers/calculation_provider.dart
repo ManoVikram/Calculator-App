@@ -217,7 +217,7 @@ class CalculationProvider extends ChangeNotifier {
   } */
 
   void percentage() {
-    answer = double.parse(result) / 100.0;
+    answer = double.parse(equation) / 100.0;
 
     clearAll();
 
