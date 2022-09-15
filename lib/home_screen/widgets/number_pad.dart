@@ -17,7 +17,7 @@ class NumberPad extends StatelessWidget {
     return Expanded(
       flex: 6,
       child: Container(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         decoration: const BoxDecoration(
           color: Color(0xFF2A2D37),
           borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
